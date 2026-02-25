@@ -36,6 +36,13 @@ app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan(env.nodeEnv === "production" ? "combined" : "dev"));
 
+app.get("/", (_req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Ramadreams admin backend is running.",
+  });
+});
+
 app.get("/health", (_req, res) => {
   res.status(200).json({
     success: true,
