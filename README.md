@@ -51,8 +51,8 @@ Default server URL: `http://localhost:5000`
 - `DELETE /api/v1/properties/:id` (admin)
 
 ## Production Subdomain Example
-- API subdomain: `api-admin.ramadreamsgroup.com`
+- API subdomain: `adminbackend.ramadreamsgroup.com`
 - Reverse proxy should forward `/api/v1/*` to backend
-- Set `CLIENT_ORIGINS` to your admin frontend origin(s), for example:
-  `https://admin.ramadreamsgroup.com,https://ramadreamsgroup.com`
+- Set `CLIENT_ORIGINS` to your allowed frontend origin(s), for example:
+  `http://localhost:3000,http://localhost:5174,https://adminfrontend.ramadreamsgroup.com,https://ramadreamsgroup.com,https://www.ramadreamsgroup.com`
 # ramadreamsgroup_admin_backend

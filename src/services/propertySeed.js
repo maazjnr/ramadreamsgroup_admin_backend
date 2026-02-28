@@ -2,7 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import Property from "../models/Property.js";
-import { createPropertySlug } from "../utils/slug.js";
+import { createPropertySlug } from "../utils/slug.js"
 import {
   deleteMediaByPublicId,
   deleteMediaRecords,

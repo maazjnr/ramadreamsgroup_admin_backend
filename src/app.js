@@ -19,9 +19,19 @@ const apiLimiter = rateLimit({
   legacyHeaders: false,
 });
 
+const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const wildcardToRegex = (pattern) =>
+  new RegExp(`^${escapeRegex(pattern).replace(/\\\*/g, ".*")}$`);
+
+const clientOriginPatternRegexes = env.clientOriginPatterns.map(wildcardToRegex);
+
+const isAllowedOrigin = (origin) =>
+  env.clientOrigins.includes(origin) ||
+  clientOriginPatternRegexes.some((pattern) => pattern.test(origin));
+
 const corsOptions = {
   origin(origin, callback) {
-    if (!origin || env.clientOrigins.includes(origin)) {
+    if (!origin || isAllowedOrigin(origin)) {
       callback(null, true);
       return;
     }

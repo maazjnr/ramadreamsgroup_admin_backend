@@ -18,10 +18,10 @@ for (const key of required) {
   }
 }
 
-const parseOrigins = (value) =>
+const parseList = (value) =>
   value
     .split(",")
-    .map((origin) => origin.trim())
+    .map((item) => item.trim())
     .filter(Boolean);
 
 const parsePort = (value) => {
@@ -46,9 +46,10 @@ export const env = {
   mongoUri: process.env.MONGO_URI,
   jwtSecret: process.env.JWT_SECRET,
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || "7d",
-  clientOrigins: parseOrigins(
+  clientOrigins: parseList(
     process.env.CLIENT_ORIGINS || "http://localhost:5174,http://localhost:3000"
   ),
+  clientOriginPatterns: parseList(process.env.CLIENT_ORIGIN_PATTERNS || ""),
   adminName: process.env.ADMIN_NAME || "Ramadreams Admin",
   adminEmail: process.env.ADMIN_EMAIL.toLowerCase(),
   adminPassword: process.env.ADMIN_PASSWORD,
